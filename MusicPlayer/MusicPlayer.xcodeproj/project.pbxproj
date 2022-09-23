@@ -13,6 +13,11 @@
 		913CBFAD28DC851100858C8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 913CBFAB28DC851100858C8F /* Main.storyboard */; };
 		913CBFAF28DC851300858C8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 913CBFAE28DC851300858C8F /* Assets.xcassets */; };
 		913CBFB228DC851300858C8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 913CBFB028DC851300858C8F /* LaunchScreen.storyboard */; };
+		913CBFBA28DC970A00858C8F /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913CBFB928DC970A00858C8F /* PlayerView.swift */; };
+		913CBFC128DC9FE000858C8F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913CBFC028DC9FE000858C8F /* Extensions.swift */; };
+		913CBFC428DCBF0700858C8F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 913CBFC328DCBF0700858C8F /* SnapKit */; };
+		913CBFC728DCC08C00858C8F /* MusicPlayerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913CBFC628DCC08C00858C8F /* MusicPlayerCollectionViewCell.swift */; };
+		913CBFC928DCC16100858C8F /* MusicPlayerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913CBFC828DCC16100858C8F /* MusicPlayerCollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,10 @@
 		913CBFAE28DC851300858C8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		913CBFB128DC851300858C8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		913CBFB328DC851300858C8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		913CBFB928DC970A00858C8F /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		913CBFC028DC9FE000858C8F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		913CBFC628DCC08C00858C8F /* MusicPlayerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerCollectionViewCell.swift; sourceTree = "<group>"; };
+		913CBFC828DCC16100858C8F /* MusicPlayerCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				913CBFC428DCBF0700858C8F /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +66,51 @@
 		913CBFA428DC851100858C8F /* MusicPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				913CBFA528DC851100858C8F /* AppDelegate.swift */,
-				913CBFA728DC851100858C8F /* SceneDelegate.swift */,
-				913CBFA928DC851100858C8F /* ViewController.swift */,
+				913CBFBE28DC9E9600858C8F /* Application */,
+				913CBFBD28DC9E8700858C8F /* ViewController */,
+				913CBFBF28DC9EA800858C8F /* View */,
+				913CBFC028DC9FE000858C8F /* Extensions.swift */,
 				913CBFAB28DC851100858C8F /* Main.storyboard */,
 				913CBFAE28DC851300858C8F /* Assets.xcassets */,
 				913CBFB028DC851300858C8F /* LaunchScreen.storyboard */,
 				913CBFB328DC851300858C8F /* Info.plist */,
 			);
 			path = MusicPlayer;
+			sourceTree = "<group>";
+		};
+		913CBFBD28DC9E8700858C8F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				913CBFA928DC851100858C8F /* ViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		913CBFBE28DC9E9600858C8F /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				913CBFA528DC851100858C8F /* AppDelegate.swift */,
+				913CBFA728DC851100858C8F /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		913CBFBF28DC9EA800858C8F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				913CBFB928DC970A00858C8F /* PlayerView.swift */,
+				913CBFC528DCC06100858C8F /* CustomCollectionView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		913CBFC528DCC06100858C8F /* CustomCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				913CBFC828DCC16100858C8F /* MusicPlayerCollectionView.swift */,
+				913CBFC628DCC08C00858C8F /* MusicPlayerCollectionViewCell.swift */,
+			);
+			path = CustomCollectionView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +129,9 @@
 			dependencies = (
 			);
 			name = MusicPlayer;
+			packageProductDependencies = (
+				913CBFC328DCBF0700858C8F /* SnapKit */,
+			);
 			productName = MusicPlayer;
 			productReference = 913CBFA228DC851100858C8F /* MusicPlayer.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +160,9 @@
 				Base,
 			);
 			mainGroup = 913CBF9928DC851100858C8F;
+			packageReferences = (
+				913CBFC228DCBF0700858C8F /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 913CBFA328DC851100858C8F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,9 +190,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				913CBFC128DC9FE000858C8F /* Extensions.swift in Sources */,
+				913CBFC728DCC08C00858C8F /* MusicPlayerCollectionViewCell.swift in Sources */,
 				913CBFAA28DC851100858C8F /* ViewController.swift in Sources */,
 				913CBFA628DC851100858C8F /* AppDelegate.swift in Sources */,
 				913CBFA828DC851100858C8F /* SceneDelegate.swift in Sources */,
+				913CBFC928DCC16100858C8F /* MusicPlayerCollectionView.swift in Sources */,
+				913CBFBA28DC970A00858C8F /* PlayerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +350,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -321,6 +378,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -356,6 +414,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		913CBFC228DCBF0700858C8F /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		913CBFC328DCBF0700858C8F /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 913CBFC228DCBF0700858C8F /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 913CBF9A28DC851100858C8F /* Project object */;
 }
