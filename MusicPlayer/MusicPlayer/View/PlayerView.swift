@@ -20,12 +20,12 @@ class PlayerView: UIView {
     private var playButton: UIButton!
     private var nextButton: UIButton!
     private var previousButton: UIButton!
-    private var musicProgressBar: UISlider!
     private var currentTimeLable: UILabel!
     private var durationTimeLable: UILabel!
     private var musicTitle: UILabel!
     private var artistTitle: UILabel!
-    private let musicPlayerCollectionView = MusicPlayerCollectionView()
+    private var state = false
+    var musicProgressBar = Slider(frame: .zero)
     weak var delegate: PlayerViewDelegate?
     
     override init(frame: CGRect) {
@@ -35,8 +35,6 @@ class PlayerView: UIView {
     
     //MARK: - UI
     private func setupUI() {
-//        backgroundColor = .systemOrange
-        setupMusicPlayerCollectionView()
         setupMusicTitle()
         setupArtistTitle()
         setupMusicProgressBar()
@@ -46,12 +44,9 @@ class PlayerView: UIView {
         setupNextButton()
         setupPreviousButton()
     }
-    private func setupMusicPlayerCollectionView() {
-        addSubview(musicPlayerCollectionView)
-    }
     private func setupMusicTitle() {
         musicTitle = UILabel()
-        musicTitle.text = "Sonne"
+        musicTitle.text = "Unknown"
         musicTitle.font = UIFont.boldSystemFont(ofSize: 28)
         musicTitle.translatesAutoresizingMaskIntoConstraints = false
         musicTitle.numberOfLines = 0
@@ -61,7 +56,7 @@ class PlayerView: UIView {
     }
     private func setupArtistTitle() {
         artistTitle = UILabel()
-        artistTitle.text = "Rammstein"
+        artistTitle.text = "Unknown"
         artistTitle.font = UIFont.systemFont(ofSize: 20)
         artistTitle.translatesAutoresizingMaskIntoConstraints = false
         artistTitle.numberOfLines = 0
@@ -70,9 +65,6 @@ class PlayerView: UIView {
         addSubview(artistTitle)
     }
     private func setupMusicProgressBar() {
-        musicProgressBar = UISlider()
-        musicProgressBar.minimumValue = 0
-        musicProgressBar.maximumValue = 1
         addSubview(musicProgressBar)
     }
     private func setupCurrentTimeLable() {
@@ -120,14 +112,35 @@ class PlayerView: UIView {
         button.subviews.first?.contentMode = .scaleAspectFit
         return button
     }
-    
+    func changeMusicTitle(text: String) {
+        musicTitle.text = text
+    }
+    func changeArtistTitle(text: String) {
+        artistTitle.text = text
+    }
+    func changeCurrentTime(time: String) {
+        currentTimeLable.text = time
+    }
+    func changeDurationTime(time: String) {
+        durationTimeLable.text = time
+    }
+    func animateButton() {
+        if state {
+            UIView.animate(withDuration: 0.2) {
+                self.playButton.setBackgroundImage(UIImage(named: "playButtonImage"), for: .normal)
+            }
+        } else {
+            UIView.animate(withDuration: 0.2) {
+                self.playButton.setBackgroundImage(UIImage(named: "pauseButtonImage"), for: .normal)
+            }
+        }
+    }
     //MARK: - Layout
     override func layoutSubviews() {
         super.layoutSubviews()
         setupConstraints()
     }
     private func setupConstraints() {
-        makeConstraintsMusicPlayerCollectionView()
         makeConstraintsMusicTitle()
         makeConstraintsArtistTitle()
         makeConstraintsMusicProgressBar()
@@ -137,16 +150,9 @@ class PlayerView: UIView {
         makeConstraintsPreviousButton()
         makeConstraintsNextButton()
     }
-    private func makeConstraintsMusicPlayerCollectionView() {
-        musicPlayerCollectionView.snp.makeConstraints { make in
-            make.height.equalTo(270)
-            make.width.equalTo(self.bounds.width)
-            make.top.equalTo(self)
-        }
-    }
     private func makeConstraintsMusicTitle() {
         musicTitle.snp.makeConstraints { make in
-            make.bottom.equalTo(musicPlayerCollectionView).offset(40)
+            make.top.equalTo(self).offset(40)
             make.leading.equalTo(self).offset(20)
             make.trailing.equalTo(self).inset(20)
         }
@@ -202,21 +208,23 @@ class PlayerView: UIView {
     }
 
     //MARK: - Delegate Methods
-    
     @objc private func playButtonTapped() {
         delegate?.playButtonTapped()
+        animateButton()
+        state.toggle()
     }
     
     @objc private func nextButtonTapped() {
         delegate?.nextButtonTapped()
+        animateButton()
+        state.toggle()
     }
     
     @objc private func previousButtonTapped() {
         delegate?.previousButtonTapped()
+        animateButton()
+        state.toggle()
     }
-
-    
-
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
